@@ -4,10 +4,13 @@ use chrono::NaiveDate;
 
 /// Pads the text left with zeros until it has 8 characters
 fn pad_with_zeros(val: &str) -> String {
-    let mut actual_val = val.to_string();
-    while actual_val.len() < 8 {
-        actual_val.insert(0, '0');
+    let mut actual_val = String::with_capacity(8);
+    let old_len = val.len();
+    let diff = 8 - old_len;
+    for _ in 0..diff {
+        actual_val.push('0');
     }
+    actual_val.push_str(val);
     return actual_val;
 }
 
