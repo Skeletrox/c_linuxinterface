@@ -43,7 +43,7 @@ static long getNum(const char *fname, const char *arg, int flags,
 
     errno = 0;
 
-    res = strtol(arg, endptr, base);
+    res = strtol(arg, &endptr, base);
 
     if (errno != 0) {
         gnFail(fname, "strtol() failed", arg, name);

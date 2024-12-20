@@ -1,7 +1,8 @@
 #include <stdarg.h>
+#include <string.h>
 #include "error_funcs.h"
 #include "tlpi_header.h"
-#include "ename.c.inc"  /* defines ename and MAX_ENAME */
+#include "ename.c.inc" /* defines ename and MAX_ENAME */
 
 NORETURN static void terminate (Boolean useExit3) {
     char *s;
@@ -39,7 +40,13 @@ static void outputError(Boolean useErr, int err, Boolean flushStdout,
         snprintf(errText, BUF_SIZE, " [%s %s]", (err > 0 && err <= MAX_ENAME) ?
                 ename[err] : "?UNKNOWN?", strerror(err));
     } else {
-        snprintf(buf, BUF_SIZE, "ERROR%s %s\n", errText, userMsg);
+        snprintf(errText, BUF_SIZE, ":");
+    }
+    int res = snprintf(buf, BUF_SIZE, "ERROR%s %s\n", errText, userMsg);
+    if (res < 0) {
+        printf("%s", userMsg);
+        snprintf(buf, BUF_SIZE, "Could not fit error in buffer,"
+                                "error printed to stdout");
     }
 
     if (flushStdout) {
