@@ -3,7 +3,6 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <string.h>
-#include <unistd.h>
 
 int main(int argc, char *argv[]) {
     int opt; // Stores option returned by getopt()
@@ -27,12 +26,7 @@ int main(int argc, char *argv[]) {
         usageErr("tee_4_1 <option> <file>\n");
     }
 
-    
-
-    printf("optind %d argc %d\n", optind, argc);
     char *filename = argv[argc - 1];
-    printf("Append = %d\n", append);
-    printf("File = %s\n", filename);
 
     // Reading from stdin
     
@@ -52,6 +46,7 @@ int main(int argc, char *argv[]) {
         if (bytes == -1) {
             errExit("write");
         }
+        memset(buffer, 0, READ_BUFFER_SIZE);
     }
     if (close(fd) == -1) {
         errExit("close");
