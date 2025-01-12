@@ -64,7 +64,7 @@ int main(int argc, char *argv[]) {
         lseek(fd, SEEK_LEN, SEEK_CUR);
         bytes = write(fd, garbage, BUF_LEN);
         if (bytes == -1) {
-            errExit("writinf data after hole");
+            errExit("writing data after hole");
         }
         if (close(fd) == -1) {
             errExit("close on initial data");
