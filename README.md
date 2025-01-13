@@ -7,3 +7,6 @@ This Repository contains code and exercises from The Linux Programming Interface
 3. `exercise_4/tee_4_1.c` -> Solution for exercise 4.1
 4. `exercise_4/cp_holes_4_2.c` -> Solution for exercise 4.2
 5. `exercise_5/seek_append_5_2.c` -> Solution for exercise 5.2
+6. `exercise_5/nonatomic_append_5_3.c` -> Solution for exercise 5.3
+
+This repo also contains solutions for these exercises written in Rust.
